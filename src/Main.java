@@ -17,7 +17,7 @@ public class Main {
         switch (escolhaInicial){
             case 1:
             var login = new Login();
-            login.RealizarLogin();
+
         }
     }
 }
