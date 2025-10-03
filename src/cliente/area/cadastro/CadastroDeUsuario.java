@@ -1,12 +1,17 @@
 package cliente.area.cadastro;
 import cliente.area.cliente.Cliente;
-
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 public class CadastroDeUsuario {
 
+    ArrayList<Cliente> clientes = new  ArrayList<>();
 
     public void cadastrandoCliente(Cliente usuario){
-        ArrayDeque<Cliente> clientes = new ArrayDeque<>();
+        clientes.add(usuario);
+
     }
+
+    //public void imprimindoCadastrosAtivos(){
+
+    //}
 }
