@@ -1,6 +1,6 @@
 import cliente.area.cadastro.CadastroDeUsuario;
-import cliente.area.cliente.Cliente;
 import cliente.area.login.Login;
+import produtos.area.ProdutosIniciais;
 
 import java.util.Scanner;
 
@@ -8,6 +8,7 @@ public class Main {
     public static void main(String[] args){
 
         apresentacao();
+        produtosIninicais();
 
     }
 
@@ -46,6 +47,11 @@ public class Main {
             }
 
         }
+    }
+
+    public static void produtosIninicais(){
+        var produtos = new ProdutosIniciais();
+        produtos.ListarProdutos();
     }
 
 }

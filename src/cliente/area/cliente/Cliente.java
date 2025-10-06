@@ -8,7 +8,6 @@ public class Cliente {
     private String cpf;
     private String senha;
     private boolean statusVip;
-
     public static ArrayList<Cliente> clientes = new  ArrayList<>();
 
     public String getNome() {
@@ -50,8 +49,6 @@ public class Cliente {
     public void setStatusVip(boolean statusVip) {
         this.statusVip = statusVip;
     }
-
-
 
     public double calcularDesconto(){
 
