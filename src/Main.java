@@ -14,7 +14,7 @@ public class Main {
     public static void apresentacao(){
         var scanner = new Scanner(System.in);
 
-        System.out.println("Bem-Vindo ao Sistema BOP");
+        System.out.println("Bem-Vindo ao Sistema BBOP");
         System.out.println("1-Login\n2-Registro\n0-Sair");
         System.out.print("Escolha: ");
         int escolhaInicial = scanner.nextInt();
@@ -32,7 +32,7 @@ public class Main {
                     var cadastro = new CadastroDeUsuario();
                     System.out.println("Loading...");
                     //Código de Cadastro
-                    pegandoDadosDeCadastro();
+                    cadastro.formularioDeCadastro();
                     controlador = 1;
                     break;
                 case 0:
@@ -48,28 +48,4 @@ public class Main {
         }
     }
 
-    public static void pegandoDadosDeCadastro(){
-        Scanner scanner = new Scanner(System.in);
-        Cliente usuario = new Cliente();
-        System.out.println("----Formulário de cadastro----");
-        System.out.print("Nome: ");
-        usuario.setNome(scanner.nextLine());
-        System.out.print("CPF: ");
-        usuario.setCpf(scanner.nextLine());
-        System.out.print("Email: ");
-        usuario.setEmail(scanner.nextLine());
-        System.out.print("Senha: ");
-        usuario.setSenha(scanner.nextLine());
-        System.out.println("Deseja aderir ao plano Vip?\nO primeiro mês é gratuito!\nApós o teste é debitado 15 reais mensalmente do seu cartão de crédito\n1-Sim 2-Não");
-        int escolhaDePlanoinicial = scanner.nextInt();
-        boolean escolha = escolhaDePlanoinicial == 1;
-        usuario.setStatusVip(escolha);
-
-        CadastroDeUsuario cadastro = new CadastroDeUsuario();
-        cadastro.cadastrandoCliente(usuario);
-
-        System.out.println("Cadastrando Concluído...\n\n\n\n\n\n\n\n");
-
-        //casdastro.imprimindoCadastrosAtivos();
-    }
 }

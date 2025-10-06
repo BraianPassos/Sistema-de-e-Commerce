@@ -1,11 +1,15 @@
 package cliente.area.cliente;
 
+import java.util.ArrayList;
+
 public class Cliente {
     private String nome;
     private String email;
     private String cpf;
     private String senha;
     private boolean statusVip;
+
+    public static ArrayList<Cliente> clientes = new  ArrayList<>();
 
     public String getNome() {
         return nome;
@@ -46,6 +50,8 @@ public class Cliente {
     public void setStatusVip(boolean statusVip) {
         this.statusVip = statusVip;
     }
+
+
 
     public double calcularDesconto(){
 
