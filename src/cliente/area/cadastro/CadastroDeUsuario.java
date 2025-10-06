@@ -1,8 +1,6 @@
 package cliente.area.cadastro;
 import cliente.area.cliente.Cliente;
-
 import java.util.Scanner;
-
 import static cliente.area.cliente.Cliente.clientes;
 
 
@@ -37,9 +35,7 @@ public class CadastroDeUsuario {
         usuario.setStatusVip(escolha);
 
         cadastrandoCliente(usuario);
-
         System.out.println("Cadastrando Concluído...\n\n\n\n\n\n\n\n");
-
         System.out.println(imprimindoCadastrosAtivos());
 
     }

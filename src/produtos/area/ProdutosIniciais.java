@@ -5,7 +5,7 @@ public class ProdutosIniciais {
     ArrayList<Produto> produtosIniciais = new ArrayList<>();
     
     public ProdutosIniciais() {
-        produtosIniciais.add(new Produto("Sardinha", "Lata de sardinha", 3.0, "Enlatados", 60));
+        produtosIniciais.add(new Produto("Sardinha", "Lata de sardinha 90g", 3.0, "Enlatados", 60));
         produtosIniciais.add(new Produto("Arroz Branco", "Pacote de arroz tipo 1", 5.5, "Grãos", 100));
         produtosIniciais.add(new Produto("Feijão Carioca", "Feijão selecionado 1kg", 7.2, "Grãos", 80));
         produtosIniciais.add(new Produto("Macarrão Espaguete", "Macarrão tipo espaguete 500g", 3.8, "Massas", 120));

@@ -1,5 +1,4 @@
 package cliente.area.cliente;
-
 import java.util.ArrayList;
 
 public class Cliente {
@@ -9,6 +8,34 @@ public class Cliente {
     private String senha;
     private boolean statusVip;
     public static ArrayList<Cliente> clientes = new  ArrayList<>();
+
+    //Zona de testes, clientes criados para teste:
+    static {
+        Cliente c1 = new Cliente();
+        c1.setNome("Ana Souza");
+        c1.setEmail("ana@email.com");
+        c1.setCpf("12345678900");
+        c1.setSenha("senha123");
+        c1.setStatusVip(true);
+        clientes.add(c1);
+
+        Cliente c2 = new Cliente();
+        c2.setNome("Bruno Lima");
+        c2.setEmail("bruno@email.com");
+        c2.setCpf("98765432100");
+        c2.setSenha("abc123");
+        c2.setStatusVip(false);
+        clientes.add(c2);
+
+        Cliente c3 = new Cliente();
+        c3.setNome("Carlos Mendes");
+        c3.setEmail("carlos@email.com");
+        c3.setCpf("45678912300");
+        c3.setSenha("pass456");
+        c3.setStatusVip(true);
+        clientes.add(c3);
+    }
+    //-------------------------------------------------------------
 
     public String getNome() {
         return nome;

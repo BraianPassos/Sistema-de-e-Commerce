@@ -1,14 +1,14 @@
 import cliente.area.cadastro.CadastroDeUsuario;
 import cliente.area.login.Login;
 import produtos.area.ProdutosIniciais;
-
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
 
         apresentacao();
-        produtosIninicais();
+
+        //produtosIninicais();
 
     }
 
@@ -25,8 +25,8 @@ public class Main {
             switch (escolhaInicial){
                 case 1:
                     var login = new Login();
-                    //Pesquisa do cliente
-                    System.out.println("Login...");
+                    login.LoginDoCliente();
+                    System.out.println("\n\n\n\n");
                     controlador = 1;
                     break;
                 case 2:
@@ -51,6 +51,7 @@ public class Main {
 
     public static void produtosIninicais(){
         var produtos = new ProdutosIniciais();
+        System.out.println("      Produtos      ");
         produtos.ListarProdutos();
     }
 
