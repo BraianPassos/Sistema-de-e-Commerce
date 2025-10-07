@@ -1,13 +1,13 @@
 import cliente.area.cadastro.CadastroDeUsuario;
 import cliente.area.login.Login;
-import produtos.area.ProdutosIniciais;
+import produtos.area.Carrinho;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
 
         apresentacao();
-
+        menuDoCarrinho();
         //produtosIninicais();
 
     }
@@ -48,11 +48,16 @@ public class Main {
 
         }
     }
+    public static void menuDoCarrinho(){
+        Carrinho carrinho = new Carrinho();
+        carrinho.menuDoCarrinho();
+    }
 
+        /*
     public static void produtosIninicais(){
         var produtos = new ProdutosIniciais();
         System.out.println("      Produtos      ");
         produtos.ListarProdutos();
-    }
+    }*/
 
 }

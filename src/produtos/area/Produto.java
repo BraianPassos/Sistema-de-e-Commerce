@@ -1,18 +1,28 @@
 package produtos.area;
 
+import java.util.ArrayList;
+
 public class Produto {
+    private int codigo;
     private String nome;
     private String descricao;
     private double preco;
     private String categoria;
     private int estoque;
+    public static ArrayList<Produto> produtosIniciais = new ArrayList<>();
 
-    public Produto(String nome, String descricao, double preco, String categoria, int estoque) {
+
+    public Produto(int codigo, String nome, String descricao, double preco, String categoria, int estoque) {
+        this.codigo = codigo;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.categoria = categoria;
         this.estoque = estoque;
+    }
+
+    public int getCodigo() {
+        return codigo;
     }
 
     public String getNome() {
@@ -54,4 +64,50 @@ public class Produto {
     public void setEstoque(int estoque) {
         this.estoque = estoque;
     }
+
+    public static void ListarProdutos(){
+        for(int i = 0; i < produtosIniciais.size(); i++){
+            var prod = produtosIniciais.get(i);
+            System.out.println("-----------------------------------");
+            System.out.println(prod.getCodigo());
+            System.out.println(prod.getNome());
+            System.out.println(prod.getDescricao());
+            System.out.println(prod.getPreco());
+            System.out.println(prod.getCategoria());
+            System.out.println(prod.getEstoque());
+            System.out.println("-----------------------------------");
+        }
+    }
+
+    //Zona de testes, clientes criados para teste:
+
+    static{
+        Produto sardinha = new Produto(111, "Sardinha", "Lata de sardinha 90g", 3.0, "Enlatados", 60);
+        Produto arrozBranco = new Produto(112, "Arroz Branco", "Pacote de arroz tipo 1", 5.5, "Grãos", 100);
+        Produto feijaoCarioca = new Produto(113, "Feijão Carioca", "Feijão selecionado 1kg", 7.2, "Grãos", 80);
+        Produto macarraoEspaguete = new Produto(114, "Macarrão Espaguete", "Macarrão tipo espaguete 500g", 3.8, "Massas", 120);
+        Produto oleoSoja = new Produto(115, "Óleo de Soja", "Óleo vegetal 900ml", 6.0, "Óleos", 90);
+        Produto cafeTorrado = new Produto(116, "Café Torrado", "Café moído tradicional 500g", 8.9, "Bebidas", 70);
+        Produto leiteIntegral = new Produto(117, "Leite Integral", "Caixa de leite UHT 1L", 4.5, "Laticínios", 150);
+        Produto biscoitoRecheado = new Produto(118, "Biscoito Recheado", "Biscoito sabor chocolate 120g", 2.5, "Snacks", 200);
+        Produto saboneteNeutro = new Produto(119, "Sabonete Neutro", "Sabonete em barra 90g", 1.8, "Higiene", 300);
+        Produto detergenteLiquido = new Produto(120, "Detergente Líquido", "Detergente para louças 500ml", 2.2, "Limpeza", 250);
+        Produto refrigeranteCola = new Produto(121, "Refrigerante Cola", "Garrafa 2L de refrigerante sabor cola", 6.5, "Bebidas", 100);
+
+    // Adicionando à lista
+        produtosIniciais.add(sardinha);
+        produtosIniciais.add(arrozBranco);
+        produtosIniciais.add(feijaoCarioca);
+        produtosIniciais.add(macarraoEspaguete);
+        produtosIniciais.add(oleoSoja);
+        produtosIniciais.add(cafeTorrado);
+        produtosIniciais.add(leiteIntegral);
+        produtosIniciais.add(biscoitoRecheado);
+        produtosIniciais.add(saboneteNeutro);
+        produtosIniciais.add(detergenteLiquido);
+        produtosIniciais.add(refrigeranteCola);
+
+        //-------------------------------------------
+    }
 }
+

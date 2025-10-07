@@ -19,6 +19,14 @@ public class Cliente {
         c1.setStatusVip(true);
         clientes.add(c1);
 
+        Cliente teste = new Cliente();
+        teste.setNome("Testando da Silva");
+        teste.setEmail("teste@email.com");
+        teste.setCpf("99999999999");
+        teste.setSenha("teste123");
+        teste.setStatusVip(true);
+        clientes.add(teste);
+
         Cliente c2 = new Cliente();
         c2.setNome("Bruno Lima");
         c2.setEmail("bruno@email.com");
@@ -36,6 +44,7 @@ public class Cliente {
         clientes.add(c3);
     }
     //-------------------------------------------------------------
+
 
     public String getNome() {
         return nome;

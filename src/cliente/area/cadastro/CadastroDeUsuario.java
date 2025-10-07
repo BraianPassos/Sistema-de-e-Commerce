@@ -38,7 +38,7 @@ public class CadastroDeUsuario {
 
         cadastrandoCliente(usuario);
 
-        System.out.println("Cadastrando Concluído...\n\n\n\n\n\n\n\n");
+        System.out.println("Cadastrando Concluído...\n\n\n");
 
         Login login = new Login();
         login.LoginDoCliente();

@@ -1,4 +1,5 @@
 package cliente.area.login;
+import cliente.area.cadastro.CadastroDeUsuario;
 import cliente.area.cliente.Cliente;
 
 import java.util.Scanner;
@@ -10,6 +11,7 @@ public class Login {
     public String buscandoCliente(String email, String senha) {
         String emailClienteIput = email;
         String senhaClienteIput = senha;
+
         for (int i = 0; i < clientes.size(); i++){
             String emailClienteLista = clientes.get(i).getEmail();
             String senhaClienteLista = clientes.get(i).getSenha();
@@ -22,6 +24,7 @@ public class Login {
 
     public void LoginDoCliente(){
         Scanner scanner = new Scanner(System.in);
+        CadastroDeUsuario cadastro = new CadastroDeUsuario();
 
         System.out.println("Digite seu email: ");
         String email = scanner.nextLine();
@@ -33,7 +36,14 @@ public class Login {
             System.out.println("Nenhum Cliente encontrado");
             System.out.println("Tente novamente...");
 
-            LoginDoCliente();
+            System.out.println("\nNão Possui conta?\n0 - Realizar Cadastro\n1 - Realizar login");
+            System.out.print("DIgite seu opcao: ");
+            int escolha = scanner.nextInt();
+            if (escolha == 0) {
+                cadastro.formularioDeCadastro();
+            } else {
+                LoginDoCliente();
+            }
         } else {
             System.out.println("Login realizado...");
             System.out.println("Seja bem vindo " + nomeDoCliente);
