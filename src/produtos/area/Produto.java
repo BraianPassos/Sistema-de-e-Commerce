@@ -21,6 +21,10 @@ public class Produto {
         this.estoque = estoque;
     }
 
+    public Produto() {
+
+    }
+
     public int getCodigo() {
         return codigo;
     }
@@ -69,16 +73,28 @@ public class Produto {
         for(int i = 0; i < produtosIniciais.size(); i++){
             var prod = produtosIniciais.get(i);
             System.out.println("-----------------------------------");
-            System.out.println(prod.getCodigo());
-            System.out.println(prod.getNome());
-            System.out.println(prod.getDescricao());
-            System.out.println(prod.getPreco());
-            System.out.println(prod.getCategoria());
-            System.out.println(prod.getEstoque());
+            System.out.println("Código: " + prod.getCodigo());
+            System.out.println("Nome: " + prod.getNome());
+            System.out.println("Descrição: " + prod.getDescricao());
+            System.out.println("Preço: " + prod.getPreco());
+            System.out.println("Categoria: " + prod.getCategoria());
+            System.out.println("Qtd disponível: " + prod.getEstoque());
             System.out.println("-----------------------------------");
         }
     }
 
+    public static Produto passandoProduto(int codigo, int quantidade){
+        for(int i = 0; i < produtosIniciais.size(); i++){
+            if(produtosIniciais.get(i).getCodigo() == codigo){
+                if (produtosIniciais.get(i).getEstoque() >= quantidade){
+                    return produtosIniciais.get(i);
+                } else {
+                    throw new RuntimeException("Estoque insuficiente");
+                }
+            }
+        }
+        return  null;
+    }
     //Zona de testes, clientes criados para teste:
 
     static{
