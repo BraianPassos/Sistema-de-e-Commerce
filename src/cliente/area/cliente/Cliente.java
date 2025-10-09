@@ -1,4 +1,6 @@
 package cliente.area.cliente;
+import produtos.area.Carrinho;
+
 import java.util.ArrayList;
 
 public class Cliente {
@@ -86,9 +88,15 @@ public class Cliente {
         this.statusVip = statusVip;
     }
 
-    public double calcularDesconto(){
 
-        return 0.0;
+    public void criandoCarinho(){
+        Carrinho carrinho = new Carrinho();
+        carrinho.setCliente(this);
+        carrinho.menuDoCarrinho();
     }
 
+    public double calcularDesconto(double precoTotal){
+        double calculoDeDesconto = precoTotal - (precoTotal * 0.05);
+        return calculoDeDesconto;
+    }
 }

@@ -1,12 +1,15 @@
 package cliente.area.login;
 import cliente.area.cadastro.CadastroDeUsuario;
 import cliente.area.cliente.Cliente;
+import produtos.area.Carrinho;
+import produtos.area.Produto;
 
 import java.util.Scanner;
 
 import static cliente.area.cliente.Cliente.clientes;
 
 public class Login {
+
 
     public String buscandoCliente(String email, String senha) {
         String emailClienteIput = email;
@@ -45,8 +48,8 @@ public class Login {
                 LoginDoCliente();
             }
         } else {
-            System.out.println("Login realizado...");
-            System.out.println("Seja bem vindo " + nomeDoCliente);
+            Cliente cliente = new Cliente();
+            cliente.criandoCarinho();
         }
     }
 }

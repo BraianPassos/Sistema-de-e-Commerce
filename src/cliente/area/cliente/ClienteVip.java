@@ -4,7 +4,9 @@ public class ClienteVip extends Cliente{
 
 
     @Override
-    public double calcularDesconto(){
-        return 0.0;
+    public double calcularDesconto(double precoTotal){
+        double valorDescontado = precoTotal - (precoTotal * 0.10);
+        return valorDescontado;
     }
 }
+

@@ -1,14 +1,18 @@
 package produtos.area;
 import cliente.area.cliente.Cliente;
+import cliente.area.cliente.ClienteVip;
+
 import java.util.ArrayList;
 import java.util.Scanner;
+
 /*
 - Fazer cálculo dopreço
 - No produto do carrinho, manter a quantidade requisitada pelo cliente (talvez usar o remove e caso ele esvazie a o carrinho, devolve a quantidade anterior);
 
  */
+
 public class Carrinho {
-    //public Cliente cliente;--> adicionar uma referência para saber se o cliente possui ou não status vip
+    private Cliente cliente;//--> adicionar uma referência para saber se o cliente possui ou não status vip
 
     /*
     Terá duas listas, a de produtos e a do carrinho;
@@ -16,8 +20,17 @@ public class Carrinho {
      */
     ArrayList<Produto> carrinhoDoCliente =  new ArrayList<>();
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public void menuDoCarrinho(){
         Scanner sc = new Scanner(System.in);
+        System.out.println(cliente);
         System.out.println("Deseja comprar alguma coisa?");
         System.out.println("1-Exibir Lista de Produtos\n2- Sair");
         int controladorDeEscolhaInicial = sc.nextInt();
@@ -76,11 +89,32 @@ public class Carrinho {
             System.out.println("Descrição: " + prod.getDescricao());
             System.out.println("Preço: " + prod.getPreco());
             System.out.println("Categoria: " + prod.getCategoria());
-            System.out.println("Qtd disponível: " + prod.getEstoque());
+            System.out.println("Qtd Escolhida: " + prod.getEstoque());
             System.out.println("-----------------------------------");
         }
-        System.out.println("Preço: " + calculandoPrecoTotal());
+        String preco = """
+                Preço Total: %.2f
+                Preço com desconto Vip: %.2f
+                """;
+        double precoNormal = buscandoPrecoNormal();
+                //calculandoPrecoTotal();
+        double precoComDesconto = buscandoPrecoComDesconto();
+        System.out.println(String.format(preco, precoNormal, precoComDesconto));
         System.out.println("///----------------------------------------------------///");
+    }
+
+    private double buscandoPrecoComDesconto() {
+        double precoComDesconto = calculandoPrecoTotal();
+
+        if(precoComDesconto > 300){
+            Cliente user = new ClienteVip();
+            return user.calcularDesconto(precoComDesconto);
+        }
+        return cliente.calcularDesconto(calculandoPrecoTotal());
+    }
+
+    private double buscandoPrecoNormal() {
+        return calculandoPrecoTotal();
     }
 
     public void pegandoProduto(){
@@ -115,11 +149,13 @@ public class Carrinho {
 
         //fazer a comparação do produto com da lista atual e excluir
     }
-    public int calculandoPrecoTotal(){
+    public double calculandoPrecoTotal(){
         // Fazer calculo do produto e aceitar um double, adicionar na assinatura a quantidade requisitada pelo cliente
-        int precoTotal = 0;
+        double precoTotal = 0;
         for(int i = 0; i < carrinhoDoCliente.size(); i++){
-            precoTotal += carrinhoDoCliente.get(i).getPreco();
+            for (int j = 0; j < carrinhoDoCliente.get(i).getEstoque(); j++){
+                precoTotal += carrinhoDoCliente.get(i).getPreco();
+            }
         }
         //calcular preco com desconto para o cliente
         return precoTotal;
