@@ -8,7 +8,7 @@ public class Produto {
     private String descricao;
     private double preco;
     private String categoria;
-    private int estoque;
+    private int quantidadeEstoque;
     public static ArrayList<Produto> produtosIniciais = new ArrayList<>();
 
 
@@ -18,7 +18,7 @@ public class Produto {
         this.descricao = descricao;
         this.preco = preco;
         this.categoria = categoria;
-        this.estoque = estoque;
+        this.quantidadeEstoque = estoque;
     }
 
     public Produto() {
@@ -61,12 +61,12 @@ public class Produto {
         this.categoria = categoria;
     }
 
-    public int getEstoque() {
-        return estoque;
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
     }
 
-    public void setEstoque(int estoque) {
-        this.estoque = estoque;
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
     }
 
     public static void ListarProdutos(){
@@ -78,15 +78,25 @@ public class Produto {
             System.out.println("Descrição: " + prod.getDescricao());
             System.out.println("Preço: " + prod.getPreco());
             System.out.println("Categoria: " + prod.getCategoria());
-            System.out.println("Qtd disponível: " + prod.getEstoque());
+            System.out.println("Qtd disponível: " + prod.getQuantidadeEstoque());
             System.out.println("-----------------------------------");
         }
     }
 
-    public static Produto passandoProduto(int codigo, int quantidade){
-        for(int i = 0; i < produtosIniciais.size(); i++){
+    public static Produto passandoProduto(int codigo, int quantidadeSolicitada) {
+        for (Produto produto : produtosIniciais) {
+            if (produto.getCodigo() == codigo) {
+                if (produto.getQuantidadeEstoque() < quantidadeSolicitada) {
+                    throw new RuntimeException("Estoque insuficiente");
+                }
+                return produto;
+            }
+        }
+        return null;
+    }
+        /*for(int i = 0; i < produtosIniciais.size(); i++){
             if(produtosIniciais.get(i).getCodigo() == codigo){
-                if (produtosIniciais.get(i).getEstoque() >= quantidade){
+                if (produtosIniciais.get(i).getQuantidadeEstoque() > quantidadeSolicitada){
                     return produtosIniciais.get(i);
                 } else {
                     throw new RuntimeException("Estoque insuficiente");
@@ -94,7 +104,7 @@ public class Produto {
             }
         }
         return  null;
-    }
+    }*/
     //Zona de testes, clientes criados para teste:
 
     static{

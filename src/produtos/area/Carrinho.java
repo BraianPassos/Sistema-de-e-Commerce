@@ -1,6 +1,8 @@
 package produtos.area;
 import cliente.area.cliente.Cliente;
 import cliente.area.cliente.ClienteVip;
+import pagamento.area.Pedido;
+import pagamento.area.StatusPedido;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -52,6 +54,7 @@ public class Carrinho {
     public  void menuDeCompra() {
         Scanner sc = new Scanner(System.in);
         int controlador = 1;
+        Pedido pedido = new Pedido();
         do {
             System.out.println("1 - Comprar produto\n2 - Excluir produto\n3 - Fechar carrinho e realizar pagamento\n4 - Esvaziar carrinho e sair");
             int escolhaDeLista = sc.nextInt();
@@ -63,20 +66,27 @@ public class Carrinho {
                 case 2:
                     //excluir produto
                     exibirListaDoCarrinho();
-                    excluindoProduto();;
+                    excluindoProduto();
                     break;
                 case 3:
                     //Fechar carrinho e realizar pagamento
+                    pedido.realizarPagamento();
                     break;
                 case 4:
                     //esvaziar carrinho e sair
-                    System.exit(0);
+                    esvaziarCarrinho();
+                    System.out.println(pedido.statusPedido("CANCELADO"));
+                    controlador = 2;
                     break;
                 default:
-                    //saída
+                    System.out.println("Erro... tente novamente!");
+                    menuDoCarrinho();
                     break;
             }
-        }while (controlador != 1) ;
+        }while (controlador == 1) ;
+
+        System.exit(0);
+        //Saída
     }
 
     public void exibirListaDoCarrinho(){
@@ -89,17 +99,19 @@ public class Carrinho {
             System.out.println("Descrição: " + prod.getDescricao());
             System.out.println("Preço: " + prod.getPreco());
             System.out.println("Categoria: " + prod.getCategoria());
-            System.out.println("Qtd Escolhida: " + prod.getEstoque());
+            System.out.println("Qtd Escolhida: " + prod.getQuantidadeEstoque());
             System.out.println("-----------------------------------");
         }
         String preco = """
+                Seu StatusVip: %s
                 Preço Total: %.2f
                 Preço com desconto Vip: %.2f
                 """;
         double precoNormal = buscandoPrecoNormal();
                 //calculandoPrecoTotal();
         double precoComDesconto = buscandoPrecoComDesconto();
-        System.out.println(String.format(preco, precoNormal, precoComDesconto));
+        String statusVip = cliente.isStatusVip() ? "Vip" : "Normal";
+        System.out.println(String.format(preco,statusVip, precoNormal, precoComDesconto));
         System.out.println("///----------------------------------------------------///");
     }
 
@@ -123,6 +135,7 @@ public class Carrinho {
         var codigoDoProduto = sc.nextInt();
         System.out.println("Digite a quantidade do produto: ");
         var quantidadeDoProduto = sc.nextInt();
+
         //enviar o id e  quantidade, fazer uma cópia deste objeto no carrinho (ou passar a ref do objeto e depois subtrair a quantidade desejada)
         Produto produto = new Produto();
         try {
@@ -132,28 +145,39 @@ public class Carrinho {
         }
         for(int i = 0; i < carrinhoDoCliente.size(); i++){
             if(carrinhoDoCliente.get(i).getCodigo()  == codigoDoProduto){
-                carrinhoDoCliente.get(i).setEstoque(quantidadeDoProduto);
-            };
+                carrinhoDoCliente.get(i).setQuantidadeEstoque(quantidadeDoProduto);
+            }
         }
-
         exibirListaDoCarrinho();
         menuDeCompra();
     }
-    public void excluindoProduto(){
+
+    private void esvaziarCarrinho() {
+        carrinhoDoCliente.clear();
+        String mensagem = carrinhoDoCliente.isEmpty() ? "Carrinho vazio..." : "Erro ao esvaziar o carrinho";
+        System.out.println(mensagem);
+    }
+
+    public void excluindoProduto() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Qual produto deseja excluir?");
         System.out.println("Digite o código do produto:");
         var codigoDoProduto = sc.nextInt();
-        System.out.println("Digite a quantidade do produto: ");
-        var quantidadeDoProduto = sc.nextInt();
 
-        //fazer a comparação do produto com da lista atual e excluir
+        for (int i = 0; i < carrinhoDoCliente.size(); i++) {
+            if (carrinhoDoCliente.get(i).getCodigo() == codigoDoProduto) {
+                carrinhoDoCliente.remove(i);
+            }
+            //fazer a comparação do produto com da lista atual e excluir
+        }
+        exibirListaDoCarrinho();
+        menuDeCompra();
     }
     public double calculandoPrecoTotal(){
         // Fazer calculo do produto e aceitar um double, adicionar na assinatura a quantidade requisitada pelo cliente
         double precoTotal = 0;
         for(int i = 0; i < carrinhoDoCliente.size(); i++){
-            for (int j = 0; j < carrinhoDoCliente.get(i).getEstoque(); j++){
+            for (int j = 0; j < carrinhoDoCliente.get(i).getQuantidadeEstoque(); j++){
                 precoTotal += carrinhoDoCliente.get(i).getPreco();
             }
         }
