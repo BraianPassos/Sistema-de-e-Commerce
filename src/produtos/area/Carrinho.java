@@ -70,7 +70,7 @@ public class Carrinho {
                     break;
                 case 3:
                     //Fechar carrinho e realizar pagamento
-                    pedido.realizarPagamento();
+                    pedido.tipoPagamento(calculandoPrecoTotal());
                     break;
                 case 4:
                     //esvaziar carrinho e sair
